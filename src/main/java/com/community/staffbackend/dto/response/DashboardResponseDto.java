@@ -5,28 +5,26 @@ public class DashboardResponseDto {
     private long totalStaff;
     private long activeStaff;
     private long inactiveStaff;
-    private long currentlyOnDuty;
-    private long currentlyOffDuty;
-    private long staffOnLeave;
-    private long temporaryWorkers;
-    private long pendingComplaints;
-    private double averageRating;
+    private long currentlyInside;
+    private long pendingVerification;
+    private long onLeave;
+    private long newThisMonth;
+    private long expiringDocuments;
 
     public DashboardResponseDto() {
     }
 
     public DashboardResponseDto(long totalStaff, long activeStaff, long inactiveStaff,
-                                long currentlyOnDuty, long currentlyOffDuty, long staffOnLeave,
-                                long temporaryWorkers, long pendingComplaints, double averageRating) {
+                                long currentlyInside, long pendingVerification, long onLeave,
+                                long newThisMonth, long expiringDocuments) {
         this.totalStaff = totalStaff;
         this.activeStaff = activeStaff;
         this.inactiveStaff = inactiveStaff;
-        this.currentlyOnDuty = currentlyOnDuty;
-        this.currentlyOffDuty = currentlyOffDuty;
-        this.staffOnLeave = staffOnLeave;
-        this.temporaryWorkers = temporaryWorkers;
-        this.pendingComplaints = pendingComplaints;
-        this.averageRating = averageRating;
+        this.currentlyInside = currentlyInside;
+        this.pendingVerification = pendingVerification;
+        this.onLeave = onLeave;
+        this.newThisMonth = newThisMonth;
+        this.expiringDocuments = expiringDocuments;
     }
 
     // Getters and Setters
@@ -54,51 +52,43 @@ public class DashboardResponseDto {
         this.inactiveStaff = inactiveStaff;
     }
 
-    public long getCurrentlyOnDuty() {
-        return currentlyOnDuty;
+    public long getCurrentlyInside() {
+        return currentlyInside;
     }
 
-    public void setCurrentlyOnDuty(long currentlyOnDuty) {
-        this.currentlyOnDuty = currentlyOnDuty;
+    public void setCurrentlyInside(long currentlyInside) {
+        this.currentlyInside = currentlyInside;
     }
 
-    public long getCurrentlyOffDuty() {
-        return currentlyOffDuty;
+    public long getPendingVerification() {
+        return pendingVerification;
     }
 
-    public void setCurrentlyOffDuty(long currentlyOffDuty) {
-        this.currentlyOffDuty = currentlyOffDuty;
+    public void setPendingVerification(long pendingVerification) {
+        this.pendingVerification = pendingVerification;
     }
 
-    public long getStaffOnLeave() {
-        return staffOnLeave;
+    public long getOnLeave() {
+        return onLeave;
     }
 
-    public void setStaffOnLeave(long staffOnLeave) {
-        this.staffOnLeave = staffOnLeave;
+    public void setOnLeave(long onLeave) {
+        this.onLeave = onLeave;
     }
 
-    public long getTemporaryWorkers() {
-        return temporaryWorkers;
+    public long getNewThisMonth() {
+        return newThisMonth;
     }
 
-    public void setTemporaryWorkers(long temporaryWorkers) {
-        this.temporaryWorkers = temporaryWorkers;
+    public void setNewThisMonth(long newThisMonth) {
+        this.newThisMonth = newThisMonth;
     }
 
-    public long getPendingComplaints() {
-        return pendingComplaints;
+    public long getExpiringDocuments() {
+        return expiringDocuments;
     }
 
-    public void setPendingComplaints(long pendingComplaints) {
-        this.pendingComplaints = pendingComplaints;
-    }
-
-    public double getAverageRating() {
-        return averageRating;
-    }
-
-    public void setAverageRating(double averageRating) {
-        this.averageRating = averageRating;
+    public void setExpiringDocuments(long expiringDocuments) {
+        this.expiringDocuments = expiringDocuments;
     }
 }

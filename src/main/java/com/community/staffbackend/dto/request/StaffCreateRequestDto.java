@@ -1,40 +1,32 @@
 package com.community.staffbackend.dto.request;
 
-import com.community.staffbackend.entity.StaffStatus;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class StaffCreateRequestDto {
 
-    @NotBlank(message = "Staff ID is required")
     private String staffId;
-
-    @NotBlank(message = "Full name is required")
+    private String name;
     private String fullName;
-
-    private String photo;
-
-    @NotBlank(message = "Phone number is required")
     private String phone;
-
-    private String address;
-
-    @NotBlank(message = "Role is required")
+    private String email;
+    private String photo;
+    private String category;
     private String role;
-
+    private String blockAssigned;
+    private String towerAssigned;
+    private String status;
+    private String verificationStatus;
+    private LocalDateTime joinDate;
+    private LocalDateTime documentExpiry;
     private String skills;
-
-    private Integer experience;
-
-    private LocalDate joiningDate;
-
+    private String experience;
     private String workingHours;
-
+    private String address;
     private String availability;
-
-    @NotNull(message = "Status is required")
-    private StaffStatus status;
+    private String idProofType;
+    private String emergencyContactName;
+    private String emergencyContactRelation;
+    private String emergencyContactPhone;
 
     public StaffCreateRequestDto() {
     }
@@ -48,20 +40,20 @@ public class StaffCreateRequestDto {
         this.staffId = staffId;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getFullName() {
         return fullName;
     }
 
     public void setFullName(String fullName) {
         this.fullName = fullName;
-    }
-
-    public String getPhoto() {
-        return photo;
-    }
-
-    public void setPhoto(String photo) {
-        this.photo = photo;
     }
 
     public String getPhone() {
@@ -72,12 +64,28 @@ public class StaffCreateRequestDto {
         this.phone = phone;
     }
 
-    public String getAddress() {
-        return address;
+    public String getEmail() {
+        return email;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public String getRole() {
@@ -88,6 +96,54 @@ public class StaffCreateRequestDto {
         this.role = role;
     }
 
+    public String getBlockAssigned() {
+        return blockAssigned;
+    }
+
+    public void setBlockAssigned(String blockAssigned) {
+        this.blockAssigned = blockAssigned;
+    }
+
+    public String getTowerAssigned() {
+        return towerAssigned;
+    }
+
+    public void setTowerAssigned(String towerAssigned) {
+        this.towerAssigned = towerAssigned;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getVerificationStatus() {
+        return verificationStatus;
+    }
+
+    public void setVerificationStatus(String verificationStatus) {
+        this.verificationStatus = verificationStatus;
+    }
+
+    public LocalDateTime getJoinDate() {
+        return joinDate;
+    }
+
+    public void setJoinDate(LocalDateTime joinDate) {
+        this.joinDate = joinDate;
+    }
+
+    public LocalDateTime getDocumentExpiry() {
+        return documentExpiry;
+    }
+
+    public void setDocumentExpiry(LocalDateTime documentExpiry) {
+        this.documentExpiry = documentExpiry;
+    }
+
     public String getSkills() {
         return skills;
     }
@@ -96,20 +152,12 @@ public class StaffCreateRequestDto {
         this.skills = skills;
     }
 
-    public Integer getExperience() {
+    public String getExperience() {
         return experience;
     }
 
-    public void setExperience(Integer experience) {
+    public void setExperience(String experience) {
         this.experience = experience;
-    }
-
-    public LocalDate getJoiningDate() {
-        return joiningDate;
-    }
-
-    public void setJoiningDate(LocalDate joiningDate) {
-        this.joiningDate = joiningDate;
     }
 
     public String getWorkingHours() {
@@ -120,6 +168,14 @@ public class StaffCreateRequestDto {
         this.workingHours = workingHours;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
     public String getAvailability() {
         return availability;
     }
@@ -128,11 +184,35 @@ public class StaffCreateRequestDto {
         this.availability = availability;
     }
 
-    public StaffStatus getStatus() {
-        return status;
+    public String getIdProofType() {
+        return idProofType;
     }
 
-    public void setStatus(StaffStatus status) {
-        this.status = status;
+    public void setIdProofType(String idProofType) {
+        this.idProofType = idProofType;
+    }
+
+    public String getEmergencyContactName() {
+        return emergencyContactName;
+    }
+
+    public void setEmergencyContactName(String emergencyContactName) {
+        this.emergencyContactName = emergencyContactName;
+    }
+
+    public String getEmergencyContactRelation() {
+        return emergencyContactRelation;
+    }
+
+    public void setEmergencyContactRelation(String emergencyContactRelation) {
+        this.emergencyContactRelation = emergencyContactRelation;
+    }
+
+    public String getEmergencyContactPhone() {
+        return emergencyContactPhone;
+    }
+
+    public void setEmergencyContactPhone(String emergencyContactPhone) {
+        this.emergencyContactPhone = emergencyContactPhone;
     }
 }

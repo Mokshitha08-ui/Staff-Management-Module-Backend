@@ -2,19 +2,21 @@ package com.community.staffbackend.dto.response;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 public class ScheduleResponseDto {
 
     private Long id;
+    private String scheduleCode;
     private Long staffId;
-    private String staffName;
     private String staffCode;
+    private String staffName;
+    private String category;
+    private String towerAssigned;
+    private String blockAssigned;
+    private String shift;
+    private String startTime;
+    private String endTime;
     private LocalDate date;
-    private LocalTime shiftStart;
-    private LocalTime shiftEnd;
-    private String assignedArea;
-    private String assignedTask;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
@@ -30,20 +32,20 @@ public class ScheduleResponseDto {
         this.id = id;
     }
 
+    public String getScheduleCode() {
+        return scheduleCode;
+    }
+
+    public void setScheduleCode(String scheduleCode) {
+        this.scheduleCode = scheduleCode;
+    }
+
     public Long getStaffId() {
         return staffId;
     }
 
     public void setStaffId(Long staffId) {
         this.staffId = staffId;
-    }
-
-    public String getStaffName() {
-        return staffName;
-    }
-
-    public void setStaffName(String staffName) {
-        this.staffName = staffName;
     }
 
     public String getStaffCode() {
@@ -54,44 +56,68 @@ public class ScheduleResponseDto {
         this.staffCode = staffCode;
     }
 
+    public String getStaffName() {
+        return staffName;
+    }
+
+    public void setStaffName(String staffName) {
+        this.staffName = staffName;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getTowerAssigned() {
+        return towerAssigned;
+    }
+
+    public void setTowerAssigned(String towerAssigned) {
+        this.towerAssigned = towerAssigned;
+    }
+
+    public String getBlockAssigned() {
+        return blockAssigned;
+    }
+
+    public void setBlockAssigned(String blockAssigned) {
+        this.blockAssigned = blockAssigned;
+    }
+
+    public String getShift() {
+        return shift;
+    }
+
+    public void setShift(String shift) {
+        this.shift = shift;
+    }
+
+    public String getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
+    }
+
+    public String getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
+    }
+
     public LocalDate getDate() {
         return date;
     }
 
     public void setDate(LocalDate date) {
         this.date = date;
-    }
-
-    public LocalTime getShiftStart() {
-        return shiftStart;
-    }
-
-    public void setShiftStart(LocalTime shiftStart) {
-        this.shiftStart = shiftStart;
-    }
-
-    public LocalTime getShiftEnd() {
-        return shiftEnd;
-    }
-
-    public void setShiftEnd(LocalTime shiftEnd) {
-        this.shiftEnd = shiftEnd;
-    }
-
-    public String getAssignedArea() {
-        return assignedArea;
-    }
-
-    public void setAssignedArea(String assignedArea) {
-        this.assignedArea = assignedArea;
-    }
-
-    public String getAssignedTask() {
-        return assignedTask;
-    }
-
-    public void setAssignedTask(String assignedTask) {
-        this.assignedTask = assignedTask;
     }
 
     public LocalDateTime getCreatedAt() {

@@ -3,6 +3,7 @@ package com.community.staffbackend.controller;
 import com.community.staffbackend.dto.request.ScheduleCreateRequestDto;
 import com.community.staffbackend.dto.request.ScheduleUpdateRequestDto;
 import com.community.staffbackend.dto.response.ScheduleResponseDto;
+import com.community.staffbackend.dto.response.StaffResponseDto;
 import com.community.staffbackend.service.ScheduleService;
 import jakarta.validation.Valid;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/schedules")
@@ -26,10 +28,29 @@ public class ScheduleController {
     @GetMapping
     public ResponseEntity<List<ScheduleResponseDto>> getSchedules(
             @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date,
-            @RequestParam(required = false) Long staffId,
-            @RequestParam(required = false) String assignedArea) {
-        List<ScheduleResponseDto> schedules = scheduleService.getSchedules(date, staffId, assignedArea);
+            @RequestParam(required = false) String staffId,
+            @RequestParam(required = false) String shift) {
+        List<ScheduleResponseDto> schedules = scheduleService.getSchedules(date, staffId, shift);
         return ResponseEntity.ok(schedules);
+    }
+
+    @PostMapping("/assign-shift")
+    public ResponseEntity<ScheduleResponseDto> assignShift(
+            @RequestParam String staffId,
+            @RequestBody Map<String, Object> shiftData) {
+        return ResponseEntity.ok(scheduleService.assignShift(staffId, shiftData));
+    }
+
+    @PostMapping("/assign-area")
+    public ResponseEntity<StaffResponseDto> assignArea(
+            @RequestParam String staffId,
+            @RequestBody Object areaData) {
+        return ResponseEntity.ok(scheduleService.assignArea(staffId, areaData));
+    }
+
+    @GetMapping("/leaves")
+    public ResponseEntity<List<Map<String, Object>>> getLeaveSchedule() {
+        return ResponseEntity.ok(scheduleService.getLeaveSchedule());
     }
 
     @GetMapping("/{id}")

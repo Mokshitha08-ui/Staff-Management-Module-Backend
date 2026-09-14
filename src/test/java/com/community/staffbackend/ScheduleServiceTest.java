@@ -4,7 +4,6 @@ import com.community.staffbackend.dto.request.ScheduleCreateRequestDto;
 import com.community.staffbackend.dto.request.StaffCreateRequestDto;
 import com.community.staffbackend.dto.response.ScheduleResponseDto;
 import com.community.staffbackend.dto.response.StaffResponseDto;
-import com.community.staffbackend.entity.StaffStatus;
 import com.community.staffbackend.service.ScheduleService;
 import com.community.staffbackend.service.StaffService;
 import org.junit.jupiter.api.Test;
@@ -35,7 +34,9 @@ public class ScheduleServiceTest {
         staffDto.setFullName("Ravi Kumar");
         staffDto.setPhone("+919876543210");
         staffDto.setRole("Security Guard");
-        staffDto.setStatus(StaffStatus.ACTIVE);
+        staffDto.setCategory("guard");
+        staffDto.setTowerAssigned("Block A");
+        staffDto.setStatus("active");
         StaffResponseDto staff = staffService.createStaff(staffDto);
 
         ScheduleCreateRequestDto req = new ScheduleCreateRequestDto();
@@ -44,15 +45,14 @@ public class ScheduleServiceTest {
         req.setShiftStart(LocalTime.of(8, 0));
         req.setShiftEnd(LocalTime.of(16, 0));
         req.setAssignedArea("Block A");
-        req.setAssignedTask("Gate Patrol");
 
         ScheduleResponseDto schedule = scheduleService.createSchedule(req);
 
         assertNotNull(schedule.getId());
-        assertEquals("Block A", schedule.getAssignedArea());
+        assertEquals("Block A", schedule.getTowerAssigned());
         assertEquals(staff.getId(), schedule.getStaffId());
 
-        List<ScheduleResponseDto> list = scheduleService.getSchedules(LocalDate.now(), staff.getId(), "Block A");
+        List<ScheduleResponseDto> list = scheduleService.getSchedules(LocalDate.now(), staff.getStaffId(), "morning");
         assertFalse(list.isEmpty());
     }
 }

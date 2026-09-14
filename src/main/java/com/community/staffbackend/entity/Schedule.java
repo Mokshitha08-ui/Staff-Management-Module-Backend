@@ -3,15 +3,17 @@ package com.community.staffbackend.entity;
 import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 @Entity
-@Table(name = "schedules")
+@Table(name = "staff_schedule")
 public class Schedule {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "schedule_code")
+    private String scheduleCode;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "staff_id", nullable = false)
@@ -20,17 +22,20 @@ public class Schedule {
     @Column(name = "date", nullable = false)
     private LocalDate date;
 
-    @Column(name = "shift_start")
-    private LocalTime shiftStart;
+    @Column(name = "shift")
+    private String shift;
 
-    @Column(name = "shift_end")
-    private LocalTime shiftEnd;
+    @Column(name = "start_time")
+    private String startTime;
 
-    @Column(name = "assigned_area")
-    private String assignedArea;
+    @Column(name = "end_time")
+    private String endTime;
 
-    @Column(name = "assigned_task")
-    private String assignedTask;
+    @Column(name = "tower_assigned")
+    private String towerAssigned;
+
+    @Column(name = "block_assigned")
+    private String blockAssigned;
 
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
@@ -61,6 +66,14 @@ public class Schedule {
         this.id = id;
     }
 
+    public String getScheduleCode() {
+        return scheduleCode;
+    }
+
+    public void setScheduleCode(String scheduleCode) {
+        this.scheduleCode = scheduleCode;
+    }
+
     public Staff getStaff() {
         return staff;
     }
@@ -77,36 +90,44 @@ public class Schedule {
         this.date = date;
     }
 
-    public LocalTime getShiftStart() {
-        return shiftStart;
+    public String getShift() {
+        return shift;
     }
 
-    public void setShiftStart(LocalTime shiftStart) {
-        this.shiftStart = shiftStart;
+    public void setShift(String shift) {
+        this.shift = shift;
     }
 
-    public LocalTime getShiftEnd() {
-        return shiftEnd;
+    public String getStartTime() {
+        return startTime;
     }
 
-    public void setShiftEnd(LocalTime shiftEnd) {
-        this.shiftEnd = shiftEnd;
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
     }
 
-    public String getAssignedArea() {
-        return assignedArea;
+    public String getEndTime() {
+        return endTime;
     }
 
-    public void setAssignedArea(String assignedArea) {
-        this.assignedArea = assignedArea;
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
     }
 
-    public String getAssignedTask() {
-        return assignedTask;
+    public String getTowerAssigned() {
+        return towerAssigned;
     }
 
-    public void setAssignedTask(String assignedTask) {
-        this.assignedTask = assignedTask;
+    public void setTowerAssigned(String towerAssigned) {
+        this.towerAssigned = towerAssigned;
+    }
+
+    public String getBlockAssigned() {
+        return blockAssigned;
+    }
+
+    public void setBlockAssigned(String blockAssigned) {
+        this.blockAssigned = blockAssigned;
     }
 
     public LocalDateTime getCreatedAt() {

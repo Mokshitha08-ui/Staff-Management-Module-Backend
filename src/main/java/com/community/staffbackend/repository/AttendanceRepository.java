@@ -1,7 +1,6 @@
 package com.community.staffbackend.repository;
 
 import com.community.staffbackend.entity.Attendance;
-import com.community.staffbackend.entity.AttendanceStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -20,13 +19,15 @@ public interface AttendanceRepository extends JpaRepository<Attendance, Long> {
 
     List<Attendance> findByStaffId(Long staffId);
 
-    long countByDateAndCheckInIsNotNullAndCheckOutIsNull(LocalDate date);
+    List<Attendance> findAllByOrderByCheckInTimeDesc();
 
     @Query("SELECT a FROM Attendance a WHERE " +
-           "(:date IS NULL OR a.date = :date) AND " +
-           "(:staffId IS NULL OR a.staff.id = :staffId) AND " +
-           "(:status IS NULL OR a.status = :status)")
-    List<Attendance> searchAttendance(@Param("date") LocalDate date,
-                                       @Param("staffId") Long staffId,
-                                       @Param("status") AttendanceStatus status);
+           "(CAST(:staffId AS string) IS NULL OR :staffId = '' OR a.staff.staffId = :staffId OR CAST(a.staff.id AS string) = :staffId) AND " +
+           "(CAST(:date AS string) IS NULL OR a.date = :date) AND " +
+           "(CAST(:status AS string) IS NULL OR :status = '' OR LOWER(a.status) = LOWER(CAST(:status AS string))) AND " +
+           "(CAST(:search AS string) IS NULL OR :search = '' OR LOWER(a.staff.fullName) LIKE LOWER(CONCAT('%', CAST(:search AS string), '%')) OR LOWER(a.staff.staffId) LIKE LOWER(CONCAT('%', CAST(:search AS string), '%')) OR LOWER(a.staff.category) LIKE LOWER(CONCAT('%', CAST(:search AS string), '%')))")
+    List<Attendance> searchAttendance(@Param("staffId") String staffId,
+                                       @Param("date") LocalDate date,
+                                       @Param("status") String status,
+                                       @Param("search") String search);
 }

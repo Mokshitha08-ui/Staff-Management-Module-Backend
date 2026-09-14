@@ -20,10 +20,10 @@ public interface ScheduleRepository extends JpaRepository<Schedule, Long> {
     List<Schedule> findByStaffId(Long staffId);
 
     @Query("SELECT s FROM Schedule s WHERE " +
-           "(:date IS NULL OR s.date = :date) AND " +
-           "(:staffId IS NULL OR s.staff.id = :staffId) AND " +
-           "(:assignedArea IS NULL OR LOWER(s.assignedArea) LIKE LOWER(CONCAT('%', :assignedArea, '%')))")
-    List<Schedule> searchSchedules(@Param("date") LocalDate date,
-                                   @Param("staffId") Long staffId,
-                                   @Param("assignedArea") String assignedArea);
+           "(CAST(:staffId AS string) IS NULL OR :staffId = '' OR s.staff.staffId = :staffId OR CAST(s.staff.id AS string) = :staffId) AND " +
+           "(CAST(:date AS string) IS NULL OR s.date = :date) AND " +
+           "(CAST(:shift AS string) IS NULL OR :shift = '' OR LOWER(s.shift) = LOWER(CAST(:shift AS string)))")
+    List<Schedule> searchSchedules(@Param("staffId") String staffId,
+                                   @Param("date") LocalDate date,
+                                   @Param("shift") String shift);
 }

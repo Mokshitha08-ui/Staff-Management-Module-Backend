@@ -5,12 +5,15 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "temporary_assignments")
+@Table(name = "staff_temporary_assignment")
 public class TemporaryAssignment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "assignment_code")
+    private String assignmentCode;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "regular_staff_id", nullable = false)
@@ -20,21 +23,35 @@ public class TemporaryAssignment {
     @JoinColumn(name = "replacement_staff_id", nullable = false)
     private Staff replacementStaff;
 
-    @Column(name = "start_date", nullable = false)
-    private LocalDate startDate;
+    @Column(name = "replacement_phone")
+    private String replacementPhone;
 
-    @Column(name = "end_date", nullable = false)
-    private LocalDate endDate;
-
-    @Column(name = "assigned_area")
-    private String assignedArea;
+    @Column(name = "is_temporary_worker")
+    private Boolean isTemporaryWorker = false;
 
     @Column(name = "reason")
     private String reason;
 
-    @Enumerated(EnumType.STRING)
+    @Column(name = "tower_assigned")
+    private String towerAssigned;
+
+    @Column(name = "block_assigned")
+    private String blockAssigned;
+
+    @Column(name = "shift")
+    private String shift;
+
+    @Column(name = "start_date", nullable = false)
+    private LocalDate startDate;
+
+    @Column(name = "end_date")
+    private LocalDate endDate;
+
+    @Column(name = "is_until_further_notice")
+    private Boolean isUntilFurtherNotice = false;
+
     @Column(name = "status", nullable = false)
-    private ReplacementStatus status;
+    private String status; // active, completed, cancelled
 
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
@@ -46,7 +63,7 @@ public class TemporaryAssignment {
     protected void onCreate() {
         this.createdAt = LocalDateTime.now();
         if (this.status == null) {
-            this.status = ReplacementStatus.ACTIVE;
+            this.status = "active";
         }
     }
 
@@ -57,6 +74,14 @@ public class TemporaryAssignment {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getAssignmentCode() {
+        return assignmentCode;
+    }
+
+    public void setAssignmentCode(String assignmentCode) {
+        this.assignmentCode = assignmentCode;
     }
 
     public Staff getRegularStaff() {
@@ -75,6 +100,54 @@ public class TemporaryAssignment {
         this.replacementStaff = replacementStaff;
     }
 
+    public String getReplacementPhone() {
+        return replacementPhone;
+    }
+
+    public void setReplacementPhone(String replacementPhone) {
+        this.replacementPhone = replacementPhone;
+    }
+
+    public Boolean getIsTemporaryWorker() {
+        return isTemporaryWorker;
+    }
+
+    public void setIsTemporaryWorker(Boolean temporaryWorker) {
+        isTemporaryWorker = temporaryWorker;
+    }
+
+    public String getReason() {
+        return reason;
+    }
+
+    public void setReason(String reason) {
+        this.reason = reason;
+    }
+
+    public String getTowerAssigned() {
+        return towerAssigned;
+    }
+
+    public void setTowerAssigned(String towerAssigned) {
+        this.towerAssigned = towerAssigned;
+    }
+
+    public String getBlockAssigned() {
+        return blockAssigned;
+    }
+
+    public void setBlockAssigned(String blockAssigned) {
+        this.blockAssigned = blockAssigned;
+    }
+
+    public String getShift() {
+        return shift;
+    }
+
+    public void setShift(String shift) {
+        this.shift = shift;
+    }
+
     public LocalDate getStartDate() {
         return startDate;
     }
@@ -91,27 +164,19 @@ public class TemporaryAssignment {
         this.endDate = endDate;
     }
 
-    public String getAssignedArea() {
-        return assignedArea;
+    public Boolean getIsUntilFurtherNotice() {
+        return isUntilFurtherNotice;
     }
 
-    public void setAssignedArea(String assignedArea) {
-        this.assignedArea = assignedArea;
+    public void setIsUntilFurtherNotice(Boolean untilFurtherNotice) {
+        isUntilFurtherNotice = untilFurtherNotice;
     }
 
-    public String getReason() {
-        return reason;
-    }
-
-    public void setReason(String reason) {
-        this.reason = reason;
-    }
-
-    public ReplacementStatus getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(ReplacementStatus status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 

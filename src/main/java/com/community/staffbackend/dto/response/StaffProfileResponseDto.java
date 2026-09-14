@@ -1,8 +1,5 @@
 package com.community.staffbackend.dto.response;
 
-import com.community.staffbackend.entity.DutyStatus;
-import com.community.staffbackend.entity.StaffStatus;
-
 public class StaffProfileResponseDto {
 
     private Long id;
@@ -16,8 +13,8 @@ public class StaffProfileResponseDto {
     private Integer experience;
     private String workingHours;
     private String availability;
-    private StaffStatus status;
-    private DutyStatus currentDutyStatus;
+    private String status;
+    private String currentDutyStatus;
     private String todaysAssignedArea;
     private Double averageRating;
     private Long reviewCount;
@@ -114,19 +111,19 @@ public class StaffProfileResponseDto {
         this.availability = availability;
     }
 
-    public StaffStatus getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(StaffStatus status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
-    public DutyStatus getCurrentDutyStatus() {
+    public String getCurrentDutyStatus() {
         return currentDutyStatus;
     }
 
-    public void setCurrentDutyStatus(DutyStatus currentDutyStatus) {
+    public void setCurrentDutyStatus(String currentDutyStatus) {
         this.currentDutyStatus = currentDutyStatus;
     }
 

@@ -1,25 +1,21 @@
 package com.community.staffbackend.dto.request;
 
-import com.community.staffbackend.entity.StaffStatus;
-import jakarta.validation.constraints.NotNull;
-
 public class StaffStatusUpdateRequestDto {
 
-    @NotNull(message = "Status is required")
-    private StaffStatus status;
+    private String status;
 
     public StaffStatusUpdateRequestDto() {
     }
 
-    public StaffStatusUpdateRequestDto(StaffStatus status) {
+    public StaffStatusUpdateRequestDto(String status) {
         this.status = status;
     }
 
-    public StaffStatus getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(StaffStatus status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 }

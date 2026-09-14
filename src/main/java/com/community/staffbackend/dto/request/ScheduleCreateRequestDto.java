@@ -1,23 +1,16 @@
 package com.community.staffbackend.dto.request;
 
-import jakarta.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class ScheduleCreateRequestDto {
 
-    @NotNull(message = "Staff ID is required")
     private Long staffId;
-
-    @NotNull(message = "Date is required")
     private LocalDate date;
-
+    private String shift;
     private LocalTime shiftStart;
-
     private LocalTime shiftEnd;
-
     private String assignedArea;
-
     private String assignedTask;
 
     public ScheduleCreateRequestDto() {
@@ -38,6 +31,14 @@ public class ScheduleCreateRequestDto {
 
     public void setDate(LocalDate date) {
         this.date = date;
+    }
+
+    public String getShift() {
+        return shift;
+    }
+
+    public void setShift(String shift) {
+        this.shift = shift;
     }
 
     public LocalTime getShiftStart() {

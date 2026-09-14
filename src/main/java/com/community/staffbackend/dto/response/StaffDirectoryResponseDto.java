@@ -1,7 +1,5 @@
 package com.community.staffbackend.dto.response;
 
-import com.community.staffbackend.entity.StaffStatus;
-
 public class StaffDirectoryResponseDto {
 
     private Long id;
@@ -11,7 +9,7 @@ public class StaffDirectoryResponseDto {
     private String role;
     private String skills;
     private Integer experience;
-    private StaffStatus status;
+    private String status;
     private Double averageRating;
 
     public StaffDirectoryResponseDto() {
@@ -74,11 +72,11 @@ public class StaffDirectoryResponseDto {
         this.experience = experience;
     }
 
-    public StaffStatus getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(StaffStatus status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 

@@ -3,7 +3,6 @@ package com.community.staffbackend.controller;
 import com.community.staffbackend.dto.request.AttendanceCheckInRequestDto;
 import com.community.staffbackend.dto.request.AttendanceCheckOutRequestDto;
 import com.community.staffbackend.dto.response.AttendanceResponseDto;
-import com.community.staffbackend.entity.AttendanceStatus;
 import com.community.staffbackend.service.AttendanceService;
 import jakarta.validation.Valid;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -13,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/attendance")
@@ -40,9 +40,29 @@ public class AttendanceController {
     public ResponseEntity<List<AttendanceResponseDto>> getAttendanceRecords(
             @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date,
             @RequestParam(required = false) Long staffId,
-            @RequestParam(required = false) AttendanceStatus status) {
+            @RequestParam(required = false) String status) {
         List<AttendanceResponseDto> records = attendanceService.getAttendanceRecords(date, staffId, status);
         return ResponseEntity.ok(records);
+    }
+
+    @GetMapping("/history")
+    public ResponseEntity<List<AttendanceResponseDto>> getAttendanceHistory(
+            @RequestParam(required = false) String staffId,
+            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date,
+            @RequestParam(required = false) String status,
+            @RequestParam(required = false) String search) {
+        List<AttendanceResponseDto> history = attendanceService.getAttendanceHistory(staffId, date, status, search);
+        return ResponseEntity.ok(history);
+    }
+
+    @GetMapping("/logs")
+    public ResponseEntity<List<Map<String, Object>>> getEntryExitLogs() {
+        return ResponseEntity.ok(attendanceService.getEntryExitLogs());
+    }
+
+    @GetMapping("/feed")
+    public ResponseEntity<List<Map<String, Object>>> getActivityFeed() {
+        return ResponseEntity.ok(attendanceService.getActivityFeed());
     }
 
     @GetMapping("/{id}")
